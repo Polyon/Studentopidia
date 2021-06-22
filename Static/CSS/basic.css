@@ -1,0 +1,60 @@
+body{
+    /* background-image: linear-gradient(to bottom right, rgb(255, 255, 255), rgb(255, 255, 255)); */
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+    justify-content: center;
+    align-content: center;
+    margin: auto;
+}
+.bg-basic{
+    background-color: rgba(255, 255, 255, 0.897);
+    color: rgb(0, 0, 0);
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 800;
+}
+.con{
+    /* border: white 4px solid; */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 30px;
+    text-align: center;
+    padding: 2%;
+    /* font-family: 'Times New Roman', Times, serif; */
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: bolder;
+    color: rgb(255, 255, 255);
+    margin: auto;
+    margin-bottom: 1%;
+}
+img{
+    justify-content: auto;
+    align-items: center;
+    height: 30px;
+    width: 30px;
+    min-height: auto;
+    min-width: auto;
+    border-radius: 10px;
+}
+nav{
+    position: fixed;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.para{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: normal;
+    color: rgb(0, 0, 0);
+    text-align: left;
+}
+.me-2{
+    border-radius: 40px;
+} 
+.btn-outline-success{
+    border-radius: 50%;
+}
+.btn{
+    background-color: lavenderblush;
+}
+.nav-pills a:hover{
+    background-color: rgb(43, 128, 255);
+}

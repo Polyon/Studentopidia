@@ -1,0 +1,77 @@
+.head{
+    background-image: linear-gradient(to top left, rgb(0, 3, 156), rgb(124, 0, 196));
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    margin-top: -5%;
+    width: 100%;
+    height: 400px;
+}
+.logo{
+    height: auto;
+    width: 200px;
+    background-position: center;
+}
+.col-sm-3, .col-sm-9{
+    height: 600px;
+}
+.btn-primary{
+    color: black;
+    background-color: white;
+}
+.boxStyle{
+    font-family: 'Times New Roman', Times, serif;
+    color: white;
+    background-color: midnightblue;
+    border-bottom-left-radius: 50%;
+    border-top-right-radius: 50%;
+    padding: 1%;
+    margin-left: -0.9%;
+    margin-bottom: -0.1%;
+}
+.box{
+    border-bottom-left-radius: 80px;
+    padding-bottom: 0%;
+}
+.border-primary {
+    border-color: #013179!important;
+}
+.bg-own{
+    background-color: rgba(255, 255, 255, 0.459);
+}
+/* Add Zoom Animation */
+.animate {
+    -webkit-animation: animatezoom 0.6s;
+    animation: animatezoom 0.6s
+}
+  
+@-webkit-keyframes animatezoom {
+    from {-webkit-transform: scale(0)} 
+    to {-webkit-transform: scale(1)}
+}
+    
+@keyframes animatezoom {
+    from {transform: scale(0)} 
+    to {transform: scale(1)}
+}
+/* The Close Button (x) */
+.close {
+    position: absolute;
+    right: 25px;
+    top: 0;
+    color: #000;
+    font-size: 35px;
+    font-weight: bold;
+}
+  
+.close:hover,
+.close:focus {
+    color: red;
+    cursor: pointer;
+}
+.header{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-weight: 600;
+    background-color: midnightblue;
+    color: white;
+}

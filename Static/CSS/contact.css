@@ -1,0 +1,33 @@
+.mytxt{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+}
+body{
+    background-image: linear-gradient(to top left, rgb(223, 222, 222), rgb(212, 212, 212));
+}
+.bg1{
+    background-image: linear-gradient(to top left, rgb(0, 153, 255), rgb(10, 0, 156));
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+.titlePosition{
+    padding-top: 10%;
+    padding-bottom: 15%;
+    padding-left: 25%;
+    /* background-color: rgba(255, 255, 255, 0.219); */
+}
+.formtxt{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bold;
+    color: black;
+}
+.formCon{
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.596);
+}
+.istyle{
+    border: none;
+    border-radius: 10px;
+}

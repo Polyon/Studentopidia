@@ -1,0 +1,492 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'CSS/mdashboard.css' %}">
+    <title>Document</title>
+</head>
+<body>
+    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-basic">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+                <a class="navbar-brand me-auto" href="#">Hello {{user.first_name}} {{user.last_name}}</a>
+                <ul class="navbar-nav mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#" id="nav0" onclick="viewPage('nav0')">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house-fill" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6zm5-.793V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
+                                <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/>
+                            </svg>
+                            Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="nav1" onclick="viewPage('nav1')">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                                <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                            </svg>
+                            Profile
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="nav2" onclick="viewPage('nav2')">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
+                                <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                                <path fill-rule="evenodd" d="M5.216 14A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216z"/>
+                                <path d="M4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/>
+                            </svg>
+                            Student
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/signout">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-logout" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2"></path>
+                                <path d="M7 12h14l-3 -3m0 6l3 -3"></path>
+                            </svg>
+                            Sign Out
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container-fluid bg pt-5">
+        <div class="row justify-content-center my-5 pt-2">
+            <div class="col-md-6 mt-5 text-center mytxt">
+              {% if profile.img is not None %}
+              <img src="{{profile.img.url}}" class="ms-auto image" alt="">
+              {% else %}
+              <img src="" class="ms-auto image" alt="">
+              {% endif %}
+              <span class="d-block mt-2"><button type="button" class="btn btn-secondary" id="profile_pic">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                  <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+                </svg>
+                Edit
+              </button></span>
+              <p class="fs-1">{{user.first_name}} {{user.last_name}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="container p-0">
+        <div class="container navcontent" id="nav00" style="display: block;">
+          <div class="row d-flex justify-content-center mb-3">
+            <header class="fs-4 text-center rounded-pill mb-4">Electronics & Communication Department</header>
+            <div class="row d-flex justify-content-center mb-1">
+              <div class="col-sm-2 fs-5">Total Student:</div>
+              <div class="col-sm-8 py-1">
+                <div class="progress rounded-pill" style="height: 20px;">
+                  <div class="progress-bar bg-success rounded-pill" role="progressbar" style="width: 100%;" aria-valuenow="{{data.total}}" aria-valuemin="0" aria-valuemax="{{data.total}}">{{data.total}}</div>
+                </div>
+              </div>
+            </div>
+            {% if profile.sec1|slice:'9:'|divisibleby:'2' %}
+            <div class="row d-flex justify-content-center mb-1">
+              <div class="col-sm-2 fs-5">{{profile.sec1}}:</div>
+              <div class="col-sm-8 py-1">
+                <div class="progress rounded-pill" style="height: 20px;">
+                  <div class="progress-bar bg-success rounded-pill" role="progressbar" style="width: {{data.sec2}}%;" aria-valuenow="{{data.sec2}}" aria-valuemin="0" aria-valuemax="{{data.total}}">{{data.no2}}</div>
+                </div>
+              </div>
+            </div>
+            <div class="row d-flex justify-content-center mb-1">
+              <div class="col-sm-2 fs-5">{{profile.sec2}}:</div>
+              <div class="col-sm-8 py-1">
+                <div class="progress rounded-pill" style="height: 20px;">
+                  <div class="progress-bar bg-success rounded-pill" role="progressbar" style="width: {{data.sec1}}%;" aria-valuenow="{{data.sec1}}" aria-valuemin="0" aria-valuemax="{{data.total}}">{{data.no1}}</div>
+                </div>
+              </div>
+            </div>
+            {% else %}
+            <div class="row d-flex justify-content-center">
+              <div class="col-sm-4 fs-5">{{profile.sec1}}:</div>
+              <div class="col-sm-8 py-1">
+                <div class="progress rounded-pill" style="height: 20px;">
+                  <div class="progress-bar bg-success rounded-pill" role="progressbar" style="width: {{data.sec2}}%;" aria-valuenow="{{data.sec2}}" aria-valuemin="0" aria-valuemax="{{data.total}}">{{data.sec2}}</div>
+                </div>
+              </div>
+            </div>
+            <div class="row d-flex justify-content-center">
+              <div class="col-sm-4 fs-5">{{profile.sec2}}:</div>
+              <div class="col-sm-8 py-1">
+                <div class="progress rounded-pill" style="height: 20px;">
+                  <div class="progress-bar bg-success rounded-pill" role="progressbar" style="width: {{data.sec1}}%;" aria-valuenow="{{data.sec1}}" aria-valuemin="0" aria-valuemax="{{data.total}}">{{data.sec1}}</div>
+                </div>
+              </div>
+            </div>
+            {% endif %}
+          </div>
+          <div class="row d-flex justify-content-center">
+            <header class="fs-4 text-center rounded-pill mb-4">Verification Table</header>
+            <div class="col-8">
+              <div class="table-responsive">
+                <table class="table table-hover table-bordered border-dark text-center">
+                  <thead>
+                    <th scope="col">Name</th>
+                    <th scope="col">Skill</th>
+                    <th scope="col">Level</th>
+                    <th scope="col">Decision</th>
+                  </thead>
+                  <tbody>
+                    {% for verification in verification %}
+                    <tr>
+                      <th scope="row">{{verification.student}}</th>
+                      <td>{{verification.skill}}</td>
+                      <td>{{verification.level}}</td>
+                      <td><a href="agree/{{verification.id}}"><button class="btn btn-success">Agree</button></a> <a href="decline/{{verification.id}}"><button class="btn btn-danger">Decline</button></a></td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container navcontent" id="nav01">
+            <header class="fs-4 text-center rounded-pill">Profile</header>
+            <form action="profile/" method="POST">{% csrf_token %}
+                <div class="row d-flex justify-content-start p-2">
+                  <div class="col-3 ps-3 fw-bold">Name:</div>
+                  <div class="col-4 ps-2" id="profile_11">{{profile.name}}</div>
+                  <div class="col-4" id="profile_01" style="display: none;">
+                    <input class="form-control" type="text" id="name" name="name" placeholder="Enter your name*" value="{{profile.name}}" readonly>
+                  </div>
+                </div>
+                <div class="row d-flex justify-content-start p-2">
+                  <div class="col-3 ps-3 fw-bold">Department:</div>
+                  <div class="col-4 ps-2" id="profile_12">{{profile.name.department}}</div>
+                  <div class="col-4" id="profile_02" style="display: none;">
+                    <input class="form-control" type="text" id="dept" name="department" placeholder="Enter your department*" value="{{profile.name.department}}" readonly>
+                  </div>
+                </div>
+                <div class="row d-flex justify-content-start p-2">
+                  <div class="col-3 ps-3 fw-bold">Section- A:</div>
+                  <div class="col-4 ps-2" id="profile_13">{{profile.sec1}}</div>
+                  <div class="col-4" id="profile_03" style="display: none;">
+                    <input type="text" name="sec1" id="sec1" class="form-control" placeholder="Enter Semester*" value="{{profile.sec1}}" required>
+                  </div>
+                  <div class="col-2 ps-3 fw-bold">Section- B:</div>
+                  <div class="col-3 ps-2" id="profile_14">{{profile.sec2}}</div>
+                  <div class="col-3" id="profile_04" style="display: none;">
+                    <input type="text" name="sec2" id="sec2" class="form-control" placeholder="Enter Semester*" value="{{profile.sec2}}" required>
+                  </div>
+                </div>
+                <div class="row d-flex justify-content-start p-2">
+                  <div class="col-3 ps-3 fw-bold">Email Address:</div>
+                  <div class="col-4 ps-2" id="profile_15">{{profile.name.email}}</div>
+                  <div class="col-4" id="profile_05" style="display: none;">
+                    <input type="email" name="email" id="email" class="form-control" placeholder="Enter your email*" value="{{profile.name.email}}" readonly>
+                  </div>
+                </div>
+                <div class="row d-flex justify-content-start p-2">
+                  <div class="col-3 ps-3 fw-bold">Contact:</div>
+                  <div class="col-4 ps-2"  id="profile_16">{{profile.name.contact}}</div>
+                  <div class="col-4" id="profile_06" style="display: none;">
+                    <input type="tel" name="contact" id="phone" class="form-control" placeholder="Enter your contect number*" value="{{profile.name.contact}}" required>
+                  </div>
+                </div>
+                <div class="row d-flex justify-content-center">
+                  <div class="col-3 d-flex justify-content-center">
+                    <button type="submit" id="profile_07" class="btn btn-outline-secondary align-self-center" style="display: none;">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-save-fill" viewBox="0 0 16 16">
+                        <path d="M8.5 1.5A1.5 1.5 0 0 1 10 0h4a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h6c-.314.418-.5.937-.5 1.5v7.793L4.854 6.646a.5.5 0 1 0-.708.708l3.5 3.5a.5.5 0 0 0 .708 0l3.5-3.5a.5.5 0 0 0-.708-.708L8.5 9.293V1.5z"/>
+                      </svg>
+                      Save
+                    </button>
+                  </div>
+                </div>
+            </form>
+            <div class="col-12 py-2 text-center">
+                <button type="button" class="btn btn-outline-secondary"  id="profile_17" onclick="formView()">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                    <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+                  </svg>
+                  Edit
+                </button>
+            </div>
+        </div>
+        <div class="container navcontent p-2 h-100" id="nav02">
+            <header class="fs-4 text-center rounded-pill mb-2">Student Dashboard</header>
+            <div class="row row-cols-1 row-cols-md-4 g-5 mt-auto">
+                {% for profile in student %}
+                <div class="col">
+                  <div class="card h-100">
+                    <img src="{{profile.img.url}}" class="card-img-top rounded-circle ms-5 mt-2" alt="..." style="width: 200px; height: 200px;">
+                    <div class="card-body">
+                      <h5 class="card-title" id="card{{profile.id}}">{{profile.name}}</h5>
+                      <p class="card-text">{{profile.name.mentor.department}}</p>
+                    </div>
+                    <button class="btn btn-primary" type="submit" id="{{profile.id}}" onclick="view('{{profile.id}}')">View</button>
+                  </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div class="modal mx-auto" id="modal">
+      <form class="container modal-content animate p-5 my-5" action="profile/" method="POST" enctype="multipart/form-data">{% csrf_token %}
+        <div class="row d-flex justify-content-end">
+          <button type="button" class="btn-close" aria-label="Close" onclick="document.getElementById('modal').style.display='none';"></button>
+        </div>
+        <div class="row d-flex justify-content-center mb-2">
+          <div class="col-6">
+            <img src="" class="rounded mx-auto d-block border" id="view" alt="" style="height: 300px;">
+          </div>
+        </div>
+        <div class="input-group">
+          <input type="file" class="form-control" id="inputGroupFile04" name="img" value="" onchange="showImage()">
+          <button class="btn btn-outline-secondary" type="submit" id="inputGroupFileAddon04">Upload</button>
+        </div>
+      </form>
+    </div>
+  {% for profile in student %}
+  <div class="modal" id="modal{{profile.id}}">
+    <div class="modal-dialog modal-dialog-scrollable modal-xl animate">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title text-center" id="exampleModalLabel">Display: {{profile.name}}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="document.getElementById('modal{{profile.id}}').style.display= 'none';"></button>
+        </div>
+        <div class="modal-body">
+          <div class="container-fluid">
+              <div class="row pb-2 border-2 border-bottom">
+                    <div class="col-sm-8 pt-5 pb-2 me-5">
+                        <div class="row d-flex justify-content-center">
+                            <div class="col-3 fw-bold">Name:</div>
+                            <div class="col-9">{{profile}}</div>
+                        </div>
+                        <div class="row d-flex justify-content-center">
+                            <div class="col-3 fw-bold">Department:</div>
+                            <div class="col-9">{{profile.name.mentor.department}}</div>
+                        </div>
+                        <div class="row d-flex justify-content-center">
+                            <div class="col-3 fw-bold">Contact No.:</div>
+                            <div class="col-9">{{profile.contect}}</div>
+                        </div>
+                        <div class="row d-flex justify-content-center">
+                            <div class="col-3 fw-bold">Email Address:</div>
+                            <div class="col-9">{{profile.name.email}}</div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2 ms-5 ps-3">
+                        <img src="{{profile.img.url}}" alt="" style="height: 154px; width: 154px;">
+                    </div>
+              </div>
+              <div class="row mt-2 d-flex justify-content-center border-bottom border-2 border-dark">
+                  <header class="fs-4 text-center rounded-pill header shadow">Qualification</header>
+                  <div class="col-11">
+                    <div class="table-responsive mt-1">
+                        <table class="table table-striped table-hover text-center">
+                            <thead>
+                                <th scope="col">Level</th>
+                                <th scope="col">Board / University</th>
+                                <th scope="col">Passing year</th>
+                                <th scope="col">Percentage / CGPA</th>
+                            </thead>
+                            <tbody>
+                                {% for qualification in qualification %}
+                                {% for q in qualification %}
+                                {% if q.name == profile %}
+                                <tr>
+                                    <th scope="row">{{q.level}}</th>
+                                    <td>{{q.board}}</td>
+                                    <td>{{q.passingYear}}</td>
+                                    <td>{{q.mark}}</td>
+                                </tr>
+                                {{ break }}
+                                {% endif %}
+                                {% endfor %}
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                  </div>
+              </div>
+              <div class="row mt-2 d-flex justify-content-center border-bottom border-2 border-dark">
+                  <header class="header fs-4 text-center rounded-pill shadow">Semester</header>
+                  <div class="col-11">
+                    <div class="table-responsive mt-1">
+                        <table class="table table-striped table-hover text-center">
+                            <thead>
+                                <th scope="col">Semester</th>
+                                <th scope="col">CGPA</th>
+                            </thead>
+                            <tbody>
+                                 {% for sem in semester %}
+                                 {% if sem.name == profile %}
+                                  <tr>
+                                      <th scope="row">Semester 1</th>
+                                      <td>{{sem.sem_1}}</td>
+                                  </tr>
+                                  <tr>
+                                      <th scope="row">Semester 2</th>
+                                      <td>{{sem.sem_2}}</td>
+                                  </tr>
+                                  <tr>
+                                      <th scope="row">Semester 3</th>
+                                      <td>{{sem.sem_3}}</td>
+                                  </tr>
+                                  <tr>
+                                      <th scope="row">Semester 4</th>
+                                      <td>{{sem.sem_4}}</td>
+                                  </tr>
+                                  <tr>
+                                      <th scope="row">Semester 5</th>
+                                      <td>{{sem.sem_5}}</td>
+                                  </tr>
+                                  <tr>
+                                      <th scope="row">Semester 6</th>
+                                      <td>{{sem.sem_6}}</td>
+                                  </tr>
+                                  <tr>
+                                      <th scope="row">Semester 7</th>
+                                      <td>{{sem.sem_7}}</td>
+                                  </tr>
+                                  <tr>
+                                      <th scope="row">Semester 8</th>
+                                      <td>{{sem.sem_8}}</td>
+                                  </tr>
+                                  {{ break }}
+                                 {% endif %}
+                                 {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                  </div>
+              </div>
+              <div class="row mt-2 pb-2 d-flex justify-content-center border-bottom border-2 border-dark">
+                    <header class="header fs-4 text-center rounded-pill shadow">Skills</header>
+                    <div class="col-11">
+                        <div class="row text-center border-bottom border-1 border-dark">
+                            <div class="col-sm-4 py-2 fw-bold">Skill</div>
+                            <div class="col-sm py-2 fw-bold">Level</div>
+                        </div>
+                        {% for skill in skill %}
+                        {% for s in skill %}
+                        {% if s.name == profile %}
+                        <div class="row border-bottom border-1 text-center">
+                            <div class="col-sm-4 py-2">{{s.skill}}</div>
+                            <div class="col-sm py-2">
+                            <div class="progress rounded-pill" style="height: 20px;">
+                                <div class="progress-bar rounded-pill bg-success" role="progressbar" style="width: {{s.level}}%;" aria-valuenow="{{s.level}}" aria-valuemin="0" aria-valuemax="100">{{s.level}}%</div>
+                            </div>
+                            </div>
+                        </div>
+                        {{ break }}
+                        {% endif %}
+                        {% endfor %}
+                        {% endfor %}
+                    </div>
+              </div>
+              <div class="row mt-2 pb-2 d-flex justify-content-center border-bottom border-2 border-dark">
+                  <header class="header fs-4 text-center rounded-pill shadow">Projects</header>
+                  <div class="col-11">
+                        {% for project in project %}
+                        {% for p in project %}
+                        {% if p.name == profile %}
+                        <div class="row text-center border-bottom border-1">
+                            <div class="col-sm-1 py-2 text-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-journal-check" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M10.854 6.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 8.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
+                                    <path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2z"/>
+                                    <path d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z"/>
+                                </svg>
+                            </div>
+                            <div class="col-sm py-2 text-start">
+                              {{p.project}}
+                            </div>
+                        </div>
+                        {{ break }}
+                        {% endif %}
+                        {% endfor %}
+                        {% endfor %}
+                  </div>
+              </div>
+              <div class="row mt-2 pb-2 d-flex justify-content-center border-bottom border-2 border-dark">
+                  <header class="header fs-4 text-center rounded-pill shadow">Hobbies</header>
+                  {% for hobby in hobby %}
+                  {% if hobby.name == profile %}
+                  <div class="col-11 py-2">{{hobby.hobbies}}</div>
+                  {{ break }}
+                  {% endif %}
+                  {% endfor %}
+              </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal" onclick="document.getElementById('modal{{profile.id}}').style.display= 'none';">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+    <script>
+      var modal= document.getElementById("modal");
+      document.getElementById("profile_pic").onclick=function(){
+        modal.style.display="block";
+      }
+      window.onclick=function(event){
+        if(event.target==modal){
+          modal.style.display="none";
+        }
+      }
+      function showImage(event){
+        var file= document.getElementById('inputGroupFile04');
+        const reader= new FileReader()
+        reader.onload= function(){
+          const img= new Image()
+          var url= reader.result;
+          document.getElementById("view").src= url;
+        }
+        reader.readAsDataURL(file.files[0])
+      }
+        function view(id){
+        var modal= document.getElementById('modal'+id);
+        modal.style.display= "block";
+        }
+        function viewPage(id){
+            for(var i=0; i<3; i++){
+                var varID= "nav"+i;
+                var VarID= "nav0"+i;
+                if(varID==id){
+                    document.getElementById(varID).classList.add("active");
+                    document.getElementById(VarID).style.display='block';
+                }
+                else{
+                    document.getElementById(varID).classList.remove("active");
+                    document.getElementById(VarID).style.display='none';
+                }
+            }
+        }
+        function formView(){
+          for(var i=1; i<8; i++)
+          {
+            document.getElementById('profile_1'+i).style.display= 'none';
+            document.getElementById('profile_0'+i).style.display= 'block';
+          }
+        }
+        function view(id){
+        var modal= document.getElementById('modal'+id);
+        modal.style.display= "block";
+        window.onclick=function(event){
+        if(event.target==modal){
+          modal.style.display="none";
+        }
+        }
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
+</body>
+</html>

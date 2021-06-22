@@ -1,0 +1,69 @@
+.mytxt{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+}
+.bg{
+    background-image: linear-gradient(to top left, rgb(0, 153, 255), rgb(10, 0, 156));
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    margin-top: -5%;
+    border-bottom-left-radius: 50% 150px;
+    border-bottom-right-radius: 50% 150px;
+    width: 100%;
+    height: 400px;
+}
+.titlePosition{
+    padding-top: 10%;
+    padding-bottom: 15%;
+    background-color: rgba(255, 255, 255, 0.219);
+}
+.start-btn{
+    display: inline-block;
+}
+.btn-outline-primary{
+    background-color: rgba(255, 255, 255, 0.829);
+}
+.bg-1{
+    background-color: rgba(230, 230, 230, 0.61);
+    border-radius: 10px;
+    padding: 2%;
+}
+/* .carousel-inner{
+    background-color: rgba(255, 255, 255, 0.384);
+} */
+.card{
+    background-color: rgba(255, 255, 255, 0.418);
+    height: 350px;
+    max-width: 320px;
+}
+.carousel-indicators{
+    margin-bottom: -2rem;
+}
+.carousel-control-prev,
+.carousel-control-next{
+    width: 4%;
+    opacity: 1;
+}
+.card-img-top{
+    height: 200px;
+    position: relative;
+}
+.logo{
+    height: auto;
+    width: 200px;
+    background-position: center;
+}
+.logo-1{
+    width: 80px;
+    height: auto;
+}
+.con-1{
+    background-color: white;
+    color: black;
+}
+.con-1:hover{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    cursor: pointer;
+}

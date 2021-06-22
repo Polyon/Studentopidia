@@ -1,0 +1,53 @@
+.bg-basic{
+    background-color: rgba(255, 255, 255, 0.897);
+    color: rgb(0, 0, 0);
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 800;
+}
+.bg{
+    background-image: linear-gradient(to top left, rgb(0, 153, 255), rgb(10, 0, 156));
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    margin-top: -5%;
+    border-bottom-left-radius: 50% 150px;
+    border-bottom-right-radius: 50% 150px;
+    width: 100%;
+}
+nav{
+    position: fixed;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.mytxt{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+}
+.image{
+    width: 250px;
+    height: auto;
+    border-radius: 50%;
+}
+header{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-weight: 600;
+    background-color: midnightblue;
+    color: white;
+}
+.navcontent {
+    display: none;
+    height: 100%;
+}
+.animate {
+    -webkit-animation: animatezoom 0.6s;
+    animation: animatezoom 0.6s
+}
+@-webkit-keyframes animatezoom {
+    from {-webkit-transform: scale(0)} 
+    to {-webkit-transform: scale(1)}
+}
+    
+@keyframes animatezoom {
+    from {transform: scale(0)} 
+    to {transform: scale(1)}
+}

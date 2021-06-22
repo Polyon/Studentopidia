@@ -1,0 +1,220 @@
+{% extends 'basic.html' %}
+{% load static %}
+{% block title %}Home{% endblock title %}
+{% block head %}<link rel="stylesheet" href="{% static 'CSS/index.css' %}">{% endblock head%}
+{% block body %}
+<div class="container-fluid bg pt-5">
+    <div class="row justify-content-center my-5 pt-3">
+        <div class="col-md-6 mt-5 text-center mytxt">
+            <p class="fs-1">STUDENTOPIDIA</p>
+            <form class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                    </svg>
+                </button>
+            </form>
+        </div>
+    </div>
+    <div class="row justify-content-center pos mt-5">
+        <img class="logo" src="/static/media/logo.png" alt="">
+    </div>
+</div>
+<div class="container mt-5 py-5">
+    <div class="row align-middle justify-content-center">
+        <div class="col-sm mx-1 p-3 rounded-3 text-center con-1">
+            <a href="mentor">
+                <img class="logo-1" src="/static/media/mentor.png" alt="">
+                <p class="fs-6" style="color: black; text-decoration: none;">Mentor<br>Dashboard</p>
+            </a>
+        </div>
+        <div class="col-sm mx-1 p-3 rounded-3 text-center con-1">
+            <a href="student">
+                <img class="logo-1" src="/static/media/usericon.png" alt="">
+                <p class="fs-6" style="color: black; text-decoration: none;">Student<br>Dashboard</p>
+            </a>
+        </div>
+        <div class="col-sm mx-1 p-3 rounded-3 text-center con-1">
+            <a href="cdc">
+                <img class="logo-1" src="/static/media/CDC.png" alt="">
+                <p class="fs-6">Placement<br>Dashboard</p>
+            </a>
+        </div>
+        <!-- <div class="col-sm mx-1 p-3 rounded-3 text-center con-1">
+            <img class="logo-1" src="/static/media/notification.png" alt="">
+            <p class="fs-6">Notification</p>
+        </div> -->
+    </div>
+</div>
+<div class="container">
+    <div class="row border-bottom border-end border-3 mb-2 justify-content-center ps-4 pb-0">
+        <p class="fs-2 fw-bold mb-1">Department</p>
+    </div>
+    <div class="row">
+        <div class="card-group">
+            <div class="card border border-1 border-dark mx-1">
+                <img src="/static/media/cse042021.jpg" class="card-img-top" alt="">
+                <div class="card-body">
+                    <h5 class="card-title">Computer Sceince and Engineering</h5>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">Last updated few mins ago</small>
+                </div>
+            </div>
+            <div class="card border border-1 border-dark mx-1">
+                <img src="/static/media/ece042021.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Electronics and Communication Engineering</h5>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">Last updated few mins ago</small>
+                </div>
+            </div>
+            <div class="card border border-1 border-dark mx-1">
+                <img src="/static/media/ee042021.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Electrical Engineering</h5>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">Last updated few mins ago</small>
+                </div>
+            </div>
+            <div class="card border border-1 border-dark mx-1">
+                <img src="/static/media/me042021.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Mechanical Engineering</h5>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">Last updated few mins ago</small>
+                </div>
+            </div>
+            <div class="card border border-1 border-dark mx-1">
+                <img src="/static/media/ce042021.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Civil Engineering</h5>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">Last updated few mins ago</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row border-bottom border-end border-3 mt-5 mb-2 ps-4 pb-0">
+        <p class="fs-2 fw-bold mb-1">About Us</p>
+    </div>
+    <div class="card mb-3 border-0" style="max-width: 100%">
+        <div class="row g-0">
+          <div class="col-md-4 bg-info bg-gradient pt-2 pb-3">
+            <img src="/static/media/logo.png" class="w-100 h-100 mx-auto d-block" alt="...">
+          </div>    
+          <div class="col-md ms-2 border-start border-2">
+            <div class="card-header mb-1">
+                <h4 class="card-title ps-2 ms-0">STUDENTOPIDIA</h5>
+            </div>
+            <div class="card-body mb-5">
+                <p class="card-text">This is a communication site. In this site a mentor or an industry can communicate to a student through thier education and skills. Thats why it's STUDENTOPIDIA.<br>Here you can know educational details of GMITians.</p>
+                <a href="about" class="card-text text-decoration-none">Know more >></a>
+            </div>
+          </div>
+        </div>
+    </div>
+</div>
+<!-- <div class="container-fluid bg">
+    <div class="row align-items-center titlePosition">
+        <div class="col text-center">
+            <h1 class="mytxt text-decoration-underline">Gargi Memorial Institute of Technology</h1>
+            <p class="mytxt fs-1">Student Profile Tracker</p>
+            <span class="start-btn">
+                <a href="/signin"><button type="button" class="btn btn-outline-primary mx-2">Sign in</button></a>
+                <a href="/signup"><button type="button" class="btn btn-outline-primary mx-2">Sign up</button></a>
+            </span>
+        </div>
+    </div>
+</div>
+<div class="container-xxl my-2 bg-1">
+    <h1 class="text-center text-decoration-underline fw-bold">WELCOME</h1>
+    <p class="fs-5">
+        In this website we exhibit our student profile. We are welcoming all the companies to visit our site and select our student according to their requirements.
+        Here you can see our all department's student. So, take a tour
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="gold" class="bi bi-emoji-smile-fill" viewBox="0 0 16 16">
+            <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zM7 6.5C7 7.328 6.552 8 6 8s-1-.672-1-1.5S5.448 5 6 5s1 .672 1 1.5zM4.285 9.567a.5.5 0 0 1 .683.183A3.498 3.498 0 0 0 8 11.5a3.498 3.498 0 0 0 3.032-1.75.5.5 0 1 1 .866.5A4.498 4.498 0 0 1 8 12.5a4.498 4.498 0 0 1-3.898-2.25.5.5 0 0 1 .183-.683zM10 8c-.552 0-1-.672-1-1.5S9.448 5 10 5s1 .672 1 1.5S10.552 8 10 8z"/>
+        </svg>
+    </p>
+</div>
+<div class="container-xxl bg-1">
+    <h1 class="text-center text-decoration-underline fw-bold">DEPARTMENT</h1>
+    <div id="carouselExampleIndicators" class="carousel slide my-4" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        {% comment %} <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button> {% endcomment %}
+    </div>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <div class="card-group">
+                <div class="card mx-1">
+                    <img src="/static/media/cse042021.jpg" class="card-img-top" alt="">
+                    <div class="card-body">
+                        <h5 class="card-title">Computer Sceince and Engineering</h5>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">Last updated few mins ago</small>
+                    </div>
+                </div>
+                <div class="card mx-1">
+                    <img src="/static/media/ece042021.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Electronics and Communication Engineering</h5>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">Last updated few mins ago</small>
+                    </div>
+                </div>
+                <div class="card mx-1">
+                    <img src="/static/media/ee042021.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Electrical Engineering</h5>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">Last updated few mins ago</small>
+                    </div>
+                </div>
+                <div class="card mx-1">
+                    <img src="/static/media/me042021.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Mechanical Engineering</h5>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">Last updated few mins ago</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <div class="card-group">
+                <div class="card mx-1">
+                    <img src="/static/media/ce042021.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Civil Engineering</h5>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">Last updated few mins ago</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+    </div>
+</div> -->
+{% endblock body %}

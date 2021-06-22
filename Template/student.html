@@ -1,0 +1,321 @@
+{% extends 'basic.html' %}
+{% load static %}
+{% block title %}Students{% endblock title %}
+{% block head %}<link rel="stylesheet" href="{% static 'CSS/student.css' %}">{% endblock head%}
+{% block body %}
+<div class="container-fluid head pt-5">
+    <div class="row justify-content-center mt-5">
+        <img class="logo" src="/static/media/logo.png" alt="">
+    </div>
+    <div class="row justify-content-center pt-1">
+        <div class="col-md-6 mt-1 text-center mytxt">
+            <p class="fs-1" style="color: white;">Student Dashboard</p>
+            <form class="d-flex">
+                <input class="form-control me-2" id="search" type="search" placeholder="Search by name" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit" onclick="search()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                    </svg>
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="container-fluid px-4 py-2">
+    <div class="row">
+        <div class="col-sm-3 border border-3">
+            <form action="" method="POST">
+                <header class="fs-5 mt-1 mb-2 border-bottom border-2">Filter</header>
+                <div class="form-group mb-4">
+                    <select class="form-control" name="dept" id="dept">
+                        <option class="hidden" selected="" disabled="">Choose department</option>
+                        <option value="Computer Science and Engineering">Computer Science and Engineering</option>
+                        <option value="Electronics and Communication Engineering">Electronics and Communication Engineering</option>
+                        <option value="Electrical Engineering">Electrical Engineering</option>
+                        <option value="Mechanical Engineering">Mechanical Engineering</option>
+                        <option value="Civil Engineering">Civil Engineering</option>
+                    </select>
+                </div>
+                <div class="form-group mb-4">
+                    <select class="form-control" name="year" id="year">
+                        <option class="hidden" selected="" disabled="">Choose year</option>
+                        <option value="3rd year">3rd year</option>
+                        <option value="4th year">4th year</option>
+                    </select>
+                </div>
+                <div class="form-group mb-4">
+                    <select class="form-control" name="cgpa" id="cgpa">
+                        <option class="hidden" selected="" disabled="">CGPA</option>
+                        <option value="6.5">above 6.5</option>
+                        <option value="7.5">above 7.5</option>
+                        <option value="8.5">above 8.5</option>
+                        <option value="9.5">above 9.5</option>
+                    </select>
+                </div>
+                <div class="form-group mb-4">
+                    <select class="form-control" id="select" name="skill" onchange="choose()">
+                        <option class="hidden" selected="" disabled="">Skill based on</option>
+                        <option value="software">software</option>
+                        <option value="hardware">hardware</option>
+                    </select>
+                </div>
+                <div class="form-group mb-4" id="softSkill" style="display: none;">
+                    <select class="form-control" name="sfskill">
+                        <option class="hidden" selected="" disabled="">Software skill</option>
+                        <option value="C">C</option>
+                        <option value="CPP">CPP</option>
+                        <option value="Python">Python</option>
+                    </select>
+                </div>
+                <div class="form-group mb-4" id="hardSkill" style="display: none;">
+                    <select class="form-control" name="hdskill">
+                        <option class="hidden" selected="" disabled="">Hardware</option>
+                        <option value="Microcontroller">Microcontroller</option>
+                        <option value="Microprocessor">Microprocessor</option>
+                    </select>
+                </div>
+                <button class="btn btn-primary" type="submit">Apply</button>
+            </form>
+        </div>
+        <div class="col-sm-9 border border-3 overflow-auto">
+            <div class="row row-cols-1 row-cols-md-4 g-4 mt-auto">
+            {% for profile in profile %}
+                <div class="col">
+                  <div class="card h-100">
+                    <img src="{{profile.img.url}}" class="card-img-top rounded-circle ms-4 mt-2" alt="..." style="width: 200px; height: 200px;">
+                    <div class="card-body">
+                      <h5 class="card-title" id="card{{profile.id}}">{{profile.name}}</h5>
+                      <p class="card-text">{{profile.name.mentor.department}}</p>
+                    </div>
+                    <button class="btn btn-primary" type="submit" id="{{profile.id}}" onclick="view('{{profile.id}}')">View</button>
+                  </div>
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% for profile in profile %}
+<div class="modal" id="modal{{profile.id}}">
+    <div class="modal-dialog modal-dialog-scrollable modal-xl animate">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title text-center" id="exampleModalLabel">Display: {{profile.name}}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="document.getElementById('modal{{profile.id}}').style.display= 'none';"></button>
+        </div>
+        <div class="modal-body">
+          <div class="container-fluid">
+              <div class="row pb-2 border-2 border-bottom">
+                    <div class="col-sm-8 pt-5 pb-2 me-5">
+                        <div class="row d-flex justify-content-center">
+                            <div class="col-3 fw-bold">Name:</div>
+                            <div class="col-9">{{profile}}</div>
+                        </div>
+                        <div class="row d-flex justify-content-center">
+                            <div class="col-3 fw-bold">Department:</div>
+                            <div class="col-9">{{profile.name.mentor.department}}</div>
+                        </div>
+                        <div class="row d-flex justify-content-center">
+                            <div class="col-3 fw-bold">Contact No.:</div>
+                            <div class="col-9">{{profile.contect}}</div>
+                        </div>
+                        <div class="row d-flex justify-content-center">
+                            <div class="col-3 fw-bold">Email Address:</div>
+                            <div class="col-9">{{profile.name.email}}</div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2 ms-5 ps-3">
+                        <img src="{{profile.img.url}}" alt="" style="height: 154px; width: 154px;">
+                    </div>
+              </div>
+              <div class="row mt-2 d-flex justify-content-center border-bottom border-2 border-dark">
+                  <header class="fs-4 text-center rounded-pill header shadow">Qualification</header>
+                  <div class="col-11">
+                    <div class="table-responsive mt-1">
+                        <table class="table table-striped table-hover text-center">
+                            <thead>
+                                <th scope="col">Level</th>
+                                <th scope="col">Board / University</th>
+                                <th scope="col">Passing year</th>
+                                <th scope="col">Percentage / CGPA</th>
+                            </thead>
+                            <tbody>
+                                {% for qualification in qualification %}
+                                {% for q in qualification %}
+                                {% if q.name == profile %}
+                                <tr>
+                                    <th scope="row">{{q.level}}</th>
+                                    <td>{{q.board}}</td>
+                                    <td>{{q.passingYear}}</td>
+                                    <td>{{q.mark}}</td>
+                                </tr>
+                                {{ break }}
+                                {% endif %}
+                                {% endfor %}
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                  </div>
+              </div>
+              <div class="row mt-2 d-flex justify-content-center border-bottom border-2 border-dark">
+                  <header class="header fs-4 text-center rounded-pill shadow">Semester</header>
+                  <div class="col-11">
+                    <div class="table-responsive mt-1">
+                        <table class="table table-striped table-hover text-center">
+                            <thead>
+                                <th scope="col">Semester</th>
+                                <th scope="col">CGPA</th>
+                            </thead>
+                            <tbody>
+                                 {% for sem in semester %}
+                                 {% if sem.name == profile %}
+                                  <tr>
+                                      <th scope="row">Semester 1</th>
+                                      <td>{{sem.sem_1}}</td>
+                                  </tr>
+                                  <tr>
+                                      <th scope="row">Semester 2</th>
+                                      <td>{{sem.sem_2}}</td>
+                                  </tr>
+                                  <tr>
+                                      <th scope="row">Semester 3</th>
+                                      <td>{{sem.sem_3}}</td>
+                                  </tr>
+                                  <tr>
+                                      <th scope="row">Semester 4</th>
+                                      <td>{{sem.sem_4}}</td>
+                                  </tr>
+                                  <tr>
+                                      <th scope="row">Semester 5</th>
+                                      <td>{{sem.sem_5}}</td>
+                                  </tr>
+                                  <tr>
+                                      <th scope="row">Semester 6</th>
+                                      <td>{{sem.sem_6}}</td>
+                                  </tr>
+                                  <tr>
+                                      <th scope="row">Semester 7</th>
+                                      <td>{{sem.sem_7}}</td>
+                                  </tr>
+                                  <tr>
+                                      <th scope="row">Semester 8</th>
+                                      <td>{{sem.sem_8}}</td>
+                                  </tr>
+                                  {{ break }}
+                                 {% endif %}
+                                 {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                  </div>
+              </div>
+              <div class="row mt-2 pb-2 d-flex justify-content-center border-bottom border-2 border-dark">
+                    <header class="header fs-4 text-center rounded-pill shadow">Skills</header>
+                    <div class="col-11">
+                        <div class="row text-center border-bottom border-1 border-dark">
+                            <div class="col-sm-4 py-2 fw-bold">Skill</div>
+                            <div class="col-sm py-2 fw-bold">Level</div>
+                        </div>
+                        {% for skill in skill %}
+                        {% for s in skill %}
+                        {% if s.name == profile %}
+                        <div class="row border-bottom border-1 text-center">
+                            <div class="col-sm-4 py-2">{{s.skill}}</div>
+                            <div class="col-sm py-2">
+                            <div class="progress rounded-pill" style="height: 20px;">
+                                <div class="progress-bar rounded-pill bg-success" role="progressbar" style="width: {{s.level}}%;" aria-valuenow="{{s.level}}" aria-valuemin="0" aria-valuemax="100">{{s.level}}%</div>
+                            </div>
+                            </div>
+                        </div>
+                        {{ break }}
+                        {% endif %}
+                        {% endfor %}
+                        {% endfor %}
+                    </div>
+              </div>
+              <div class="row mt-2 pb-2 d-flex justify-content-center border-bottom border-2 border-dark">
+                  <header class="header fs-4 text-center rounded-pill shadow">Projects</header>
+                  <div class="col-11">
+                        {% for project in project %}
+                        {% for p in project %}
+                        {% if p.name == profile %}
+                        <div class="row text-center border-bottom border-1">
+                            <div class="col-sm-1 py-2 text-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-journal-check" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M10.854 6.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 8.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
+                                    <path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2z"/>
+                                    <path d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z"/>
+                                </svg>
+                            </div>
+                            <div class="col-sm py-2 text-start">
+                              {{p.project}}
+                            </div>
+                        </div>
+                        {{ break }}
+                        {% endif %}
+                        {% endfor %}
+                        {% endfor %}
+                  </div>
+              </div>
+              <div class="row mt-2 pb-2 d-flex justify-content-center border-bottom border-2 border-dark">
+                  <header class="header fs-4 text-center rounded-pill shadow">Hobbies</header>
+                  {% for hobby in hobby %}
+                  {% if hobby.name == profile %}
+                  <div class="col-11 py-2">{{hobby.hobbies}}</div>
+                  {{ break }}
+                  {% endif %}
+                  {% endfor %}
+              </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal" onclick="document.getElementById('modal{{profile.id}}').style.display= 'none';">Close</button>
+        </div>
+      </div>
+    </div>
+</div>
+{% endfor %}
+<script>
+    function view(id){
+        var modal= document.getElementById('modal'+id);
+        modal.style.display= "block";
+        window.onclick=function(event){
+        if(event.target==modal){
+          modal.style.display="none";
+        }
+        }
+    }
+    
+    function choose(){
+        var base= document.getElementById('select').value;
+        if(base=='software')
+        {
+            document.getElementById('softSkill').style.display= "block";
+            document.getElementById('hardSkill').style.display= "none";
+        }
+        else if(base=='hardware')
+        {
+            document.getElementById('softSkill').style.display= "none";
+            document.getElementById('hardSkill').style.display= "block";
+        }
+    }
+
+    function search(){
+        var quary= document.getElementById("search").innerHTML;
+        var i=1
+        if(i>0){
+            var match= document.getElementById("card"+i);
+            var find= match.innerHTML;
+            alert(quary+"--"+find);
+            if(quary==find){
+                match.style.display="block";
+            }
+            else{
+                match.style.display= "none";
+            }
+            i=i+1;
+        }
+    }
+</script>
+{% endblock body %}
