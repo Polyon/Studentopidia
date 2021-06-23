@@ -42,6 +42,6 @@
 >> db.sqlite3
 
 * Now your project initialized done successfully.
-* * To check run the following command:
+ * To check run the following command:
 > python manage.py runserver\
-* * After successfully run your project ready to edit.
+ * After successfully run your project ready to edit.
